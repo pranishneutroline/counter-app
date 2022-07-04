@@ -25,13 +25,13 @@ export default function App() {
 
   return (
     <div className="App">
-      <p>Counter App</p>
-      <button name="increase" >
+      <h1>Counter App</h1>
+      <button name="increase"className="btn increase" >
         Increase
       </button>
-      <button>Decrease</button>
+      <button className="btn">Decrease</button>
       <p>{count}</p>
-      <button onClick={() => setIsPlaying(!isPlaying)}>
+      <button onClick={() => setIsPlaying(!isPlaying)} className="btn">
         {isPlaying ? "Play" : "Pause"}
       </button>
     </div>
