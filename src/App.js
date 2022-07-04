@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
-function App() {
+import "./App.css";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [button, setButton] = useState("");
+
+  function increase() {
+    setCount((prevCounter) => prevCounter + 1)
+  }
+  function decrease() {
+    setCount((prevCounter) => prevCounter - 1)
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // !isPlaying&&increase();
+      !isPlaying?increase(): decrease();
+ 
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [isPlaying]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Counter App</p>
+      <button name="increase" >
+        Increase
+      </button>
+      <button>Decrease</button>
+      <p>{count}</p>
+      <button onClick={() => setIsPlaying(!isPlaying)}>
+        {isPlaying ? "Play" : "Pause"}
+      </button>
     </div>
   );
 }
-
-export default App;
